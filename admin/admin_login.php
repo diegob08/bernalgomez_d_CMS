@@ -21,21 +21,34 @@ if (isset($_POST['submit'])) {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>CMS Portal Login</title>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Welcome to your admin panel login</title>
 </head>
 <body>
-<h1>Welcome Company Name</h1>
-<?php if (!empty($message)) {
-    echo $message;
-} ?>
-<form action="admin_login.php" method="post">
-    <label>Username:</label>
-    <input type="text" name="username" value="">
-    <br>
-    <label>Password:</label>
-    <input type="text" name="password" value="">
-    <br>
-    <input type="submit" name="submit" value="Show me the money">
-</form>
+    <div class="loginCont">
+      <?php if ($message !== 'locked') {
+          echo $message;
+          ?>
+        <h1 class="title">Admin Login</h1>
+        <section id="formSect">
+            <form action="admin_login.php" method="post">
+                <label class="hidden">Username:</label>
+                <input type="text" name="username" placeholder="username" value="">
+                <br>
+                <label class="hidden">Password</label>
+                <input type="password" name="password" placeholder="password" value="">
+                <br><br>
+                <input type="submit" name="submit" value="Sign In">
+            </form>
+        </section>
+    </div>
+<?php } else { ?>
+    <div id="loginCont">
+        <h1 class="title">Admin Login</h1>
+        <section id="formSect">
+            <p>Your account has been locked! Please contact admin</p>
+        </section>
+    </div>
+<?php } ?>
 </body>
 </html>
